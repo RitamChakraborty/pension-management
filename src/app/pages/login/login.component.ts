@@ -56,13 +56,9 @@ export class LoginComponent implements OnInit {
 
     this.loginService.login(loginRequest)
       .subscribe({
-        error: err => {
-          if (err.status.toString().startsWith("4")) {
+        next: isAuthenticated => {
+          if (!isAuthenticated) {
             this.loginError = 'Invalid credentials';
-          } else if (err.status.toString().startsWith("5")) {
-            this.loginError = 'Service unavailable';
-          } else {
-            this.loginError = 'Error code: ' + err.status;
           }
         },
         complete: () => this.router.navigate([''])
