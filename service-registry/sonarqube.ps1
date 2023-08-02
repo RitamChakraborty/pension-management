@@ -1,1 +1,0 @@
-mvn sonar:sonar -Dsonar.projectKey=service-registry -Dsonar.host.url=http://localhost:9000 -Dsonar.login=0fce11afe1f47ea22d3e4cf7599a3f6a17c80359

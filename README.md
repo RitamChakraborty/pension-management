@@ -1,5 +1,3 @@
-# Pension Management
+# Pension Management Portal
 
-<p align="center">
-    <img src="./.screenshots/screenshot.gif" alt="screenshot">
-</p>
+Front end application for Pension Management Application written in *Angular*.
