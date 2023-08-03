@@ -11,7 +11,6 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {AuthorizationHeaderInterceptor} from "./interceptor/authorization-header/authorization-header.interceptor";
 import {NgxMaskModule} from "ngx-mask";
-import {LoadingInterceptor} from "./interceptor/loading/loading.interceptor";
 
 @NgModule({
   declarations: [
@@ -35,11 +34,6 @@ import {LoadingInterceptor} from "./interceptor/loading/loading.interceptor";
       useClass: AuthorizationHeaderInterceptor,
       multi: true
     },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: LoadingInterceptor,
-      multi: true
-    }
   ],
   bootstrap: [AppComponent]
 })
