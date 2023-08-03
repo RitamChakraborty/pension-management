@@ -3,7 +3,6 @@ import {AuthenticateService} from "../../service/authenticate/authenticate.servi
 import {Pensioner} from "../../model/pensioner";
 import {ProcessPensionResponse} from "../../model/process-pension-response";
 import {PensionService} from "../../service/pension/pension.service";
-import {ProcessPensionRequest} from "../../model/process-pension-request";
 import {LoadingService} from "../../service/loading/loading.service";
 import {animate, state, style, transition, trigger} from "@angular/animations";
 
@@ -128,10 +127,7 @@ export class HomeComponent implements OnInit {
       this.processPensionBtnState = "loading";
 
       setTimeout(() => {
-        const processPensionRequest: ProcessPensionRequest = {
-          aadharNumber: this.pensioner?.aadharNumber!
-        }
-        this.pensionService.processPension(processPensionRequest)
+          this.pensionService.processPension()
           .subscribe({
             next: value => this.processPensionResponse = value,
             error: (err) => (this.authenticationService.logout()),
