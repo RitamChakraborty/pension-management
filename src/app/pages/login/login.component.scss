@@ -98,12 +98,15 @@
       }
 
       &.login-form {
+        flex-basis: 50%;
+
         h1 {
           display: none;
         }
       }
 
       &.side-image {
+        flex-basis: 50%;
         display: grid;
       }
     }
