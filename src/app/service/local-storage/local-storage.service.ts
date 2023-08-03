@@ -14,6 +14,10 @@ export class LocalStorageService {
     localStorage.setItem(LocalStorageKey.AADHAR_NUMBER, aadharNumber.toString());
   }
 
+  public clearAadharNumber(): void {
+    localStorage.removeItem(LocalStorageKey.AADHAR_NUMBER);
+  }
+
   public get isAuthenticated(): boolean {
     const isAuthenticated: string | null = localStorage.getItem(LocalStorageKey.IS_AUTHENTICATED);
     return isAuthenticated ? isAuthenticated === 'true' : false;
@@ -21,5 +25,9 @@ export class LocalStorageService {
 
   public set isAuthenticated(isAuthenticated: boolean) {
     localStorage.setItem(LocalStorageKey.IS_AUTHENTICATED, isAuthenticated ? 'true' : 'false');
+  }
+
+  public clearIsAuthenticated(): void {
+    localStorage.removeItem(LocalStorageKey.IS_AUTHENTICATED);
   }
 }

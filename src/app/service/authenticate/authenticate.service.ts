@@ -9,15 +9,16 @@ import {LocalStorageService} from "../local-storage/local-storage.service";
   providedIn: 'root'
 })
 export class AuthenticateService {
-  private _pensioner?: Pensioner;
-
   constructor(
     private _localStorageService: LocalStorageService,
     private _router: Router,
     private _snackBarService: SnackbarService
   ) {
-    this._pensioner = {
-      aadharNumber: _localStorageService.aadharNumber,
+  }
+
+  get pensioner(): Pensioner {
+    return {
+      aadharNumber: this._localStorageService.aadharNumber,
       pan: 'ABCDE1234F',
       name: 'Ritam Chakraborty',
       dateOfBirth: '2023-06-04',
@@ -29,11 +30,7 @@ export class AuthenticateService {
         bankType: 'Private',
         accountNumber: 1234567890,
       }
-    }
-  }
-
-  get pensioner(): Pensioner | undefined {
-    return this._pensioner;
+    };
   }
 
   authenticate(): Observable<boolean> {
@@ -41,7 +38,8 @@ export class AuthenticateService {
   }
 
   logout() {
-    this._pensioner = undefined;
+    this._localStorageService.isAuthenticated = false;
+    this._localStorageService.clearAadharNumber();
     this._router.navigate(['login']);
     this._snackBarService.showSnackbar("You're logged out");
   }
