@@ -131,10 +131,10 @@ export class HomeComponent implements OnInit {
           .subscribe({
             next: value => this.processPensionResponse = value,
               error: () => (this.authenticationService.logout()),
-            complete: () => {
-              this.processPensionBtnState = "complete";
-              this.loadingPension = false;
-            }
+              complete: () => {
+                  this.processPensionBtnState = "complete";
+                  this.loadingPension = false;
+              }
           });
       }, 3000);
     }
