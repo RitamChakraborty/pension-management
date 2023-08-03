@@ -3,10 +3,10 @@
   height: 99vh;
 
   .container {
-    flex-basis: 50%;
     position: relative;
 
     header {
+      display: none;
       position: absolute;
       width: 100%;
       margin: 2rem 0;
@@ -21,6 +21,7 @@
     }
 
     &.login-form {
+      width: 100%;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -29,6 +30,11 @@
       header {
         color: #49353b;
         text-align: right;
+      }
+
+      h1 {
+        font-size: xx-large;
+        text-align: center;
       }
 
       .logo {
@@ -63,7 +69,7 @@
     }
 
     &.side-image {
-      display: grid;
+      display: none;
       place-items: center;
       background-color: #49353b;
       box-shadow: 10px -10px -15px #49353b;
@@ -75,6 +81,30 @@
 
       img {
         width: 95%;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 45rem) {
+  #login {
+    .container {
+      header {
+        display: block;
+
+        span {
+          margin: 1rem 0.25rem;
+        }
+      }
+
+      &.login-form {
+        h1 {
+          display: none;
+        }
+      }
+
+      &.side-image {
+        display: grid;
       }
     }
   }
