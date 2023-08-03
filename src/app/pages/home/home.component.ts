@@ -130,7 +130,7 @@ export class HomeComponent implements OnInit {
           this.pensionService.processPension()
           .subscribe({
             next: value => this.processPensionResponse = value,
-            error: (err) => (this.authenticationService.logout()),
+              error: () => (this.authenticationService.logout()),
             complete: () => {
               this.processPensionBtnState = "complete";
               this.loadingPension = false;
