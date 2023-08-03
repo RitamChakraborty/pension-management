@@ -33,6 +33,7 @@ $accent-color: #ff4081;
   .container {
     width: min(100vw, 1000px);
     margin: 0 auto;
+    overflow: hidden;
 
     nav {
       width: 100%;
@@ -44,50 +45,52 @@ $accent-color: #ff4081;
 
     .grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      grid-template-areas:
-        "box-1 box-2"
-        "box-1 box-3";
-
-      .tile {
-        box-sizing: border-box;
-        height: 90px;
-        width: 80%;
-        padding: 2rem;
-        font-size: x-large;
-        box-shadow: $box-shadow;
-        border-radius: 1rem;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        background-color: #FDFDFDFF;
-        transition: 500ms ease-out;
-
-        &:hover {
-          transform: scale(1.1);
-        }
-
-        &:nth-child(2) {
-          @include slide-down-animation(1);
-        }
-
-        &:nth-child(3) {
-          @include slide-down-animation(2);
-        }
-
-        &:nth-child(4) {
-          @include slide-down-animation(3);
-        }
-
-        &:nth-child(5) {
-          @include slide-down-animation(4);
-        }
-      }
+      height: 80vh;
+      overflow-y: auto;
+      align-items: center;
+      padding-bottom: 5rem;
 
       .box-1 {
         height: 600px;
         padding: 0 2rem;
-        grid-area: box-1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .tile {
+          box-sizing: border-box;
+          height: 90px;
+          width: 80%;
+          padding: 2rem;
+          font-size: x-large;
+          box-shadow: $box-shadow;
+          border-radius: 1rem;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          background-color: #FDFDFDFF;
+          transition: 500ms ease-out;
+
+          &:hover {
+            transform: scale(1.1);
+          }
+
+          &:nth-child(2) {
+            @include slide-down-animation(1);
+          }
+
+          &:nth-child(3) {
+            @include slide-down-animation(2);
+          }
+
+          &:nth-child(4) {
+            @include slide-down-animation(3);
+          }
+
+          &:nth-child(5) {
+            @include slide-down-animation(4);
+          }
+        }
 
         .name {
           padding: 2rem 0;
@@ -118,8 +121,8 @@ $accent-color: #ff4081;
       }
 
       .box-2 {
-        height: 250px;
-        grid-area: box-2;
+        height: 350px;
+        margin-top: -50px;
 
         .cards {
           height: 350px;
@@ -227,8 +230,6 @@ $accent-color: #ff4081;
       }
 
       .box-3 {
-        grid-area: box-3;
-
         .process-pension {
           margin: 0 auto;
           display: flex;
@@ -303,8 +304,6 @@ $accent-color: #ff4081;
 .pension-details {
   grid-template-columns: repeat(2, 1fr);
   position: absolute;
-  bottom: -100%;
-  left: calc(50% + 1rem);
   height: 150px;
   width: 400px;
   border-top-left-radius: 2rem;
@@ -313,9 +312,13 @@ $accent-color: #ff4081;
   box-shadow: rgba(0, 0, 0, 0.35) 0 5px 15px;
   background-color: white;
   transition: 500ms ease-out;
+  border: solid;
+  z-index: 10;
+  transform: scale(0.8);
+  left: calc(50% - 240px);
 
   &:hover {
-    transform: scale(1.1);
+    transform: scale(0.9);
   }
 
   .pension-amount {
@@ -367,5 +370,22 @@ $accent-color: #ff4081;
   }
   to {
     opacity: 1;
+  }
+}
+
+@media screen and (min-width: 45rem) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
+    height: max-content;
+    overflow: hidden !important;
+
+    .box-1 {
+      grid-row: span 2;
+    }
+  }
+
+  .pension-details {
+    left: calc(50% + 1rem);
   }
 }
