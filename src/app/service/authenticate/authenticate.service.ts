@@ -1,12 +1,9 @@
 import {Injectable} from '@angular/core';
-import {catchError, map, Observable, of} from "rxjs";
+import {Observable, of} from "rxjs";
 import {Pensioner} from "../../model/pensioner";
-import {HttpClient} from "@angular/common/http";
-import {environment} from "../../../environments/environment";
-import {JwtService} from "../jwt/jwt.service";
-import Logger from "js-logger";
 import {Router} from "@angular/router";
 import {SnackbarService} from "../snackbar/snackbar.service";
+import {LocalStorageService} from "../local-storage/local-storage.service";
 
 @Injectable({
   providedIn: 'root'
@@ -15,11 +12,24 @@ export class AuthenticateService {
   private _pensioner?: Pensioner;
 
   constructor(
-    private httpClient: HttpClient,
-    private jwtService: JwtService,
-    private router: Router,
+    _localStorageService: LocalStorageService,
+    private _router: Router,
     private _snackBarService: SnackbarService
   ) {
+    this._pensioner = {
+      aadharNumber: _localStorageService.aadharNumber,
+      pan: 'ABCDE1234F',
+      name: 'Ritam Chakraborty',
+      dateOfBirth: '2023-06-04',
+      salaryEarned: 60_000,
+      allowances: 5_000,
+      pensionType: 'Personal',
+      bankDetails: {
+        bankName: 'HSBC',
+        bankType: 'Private',
+        accountNumber: 1234567890,
+      }
+    }
   }
 
   get pensioner(): Pensioner | undefined {
@@ -27,36 +37,12 @@ export class AuthenticateService {
   }
 
   authenticate(): Observable<boolean> {
-    this._pensioner = undefined;
-    try {
-      const token = this.jwtService.getToken();
-
-      return this.httpClient.get<Pensioner>(
-        `${environment.API_URL}/authorization/authenticate`,
-      ).pipe(
-        catchError((err) => {
-          Logger.error('AuthenticationService.authenticate(): ', err);
-          return of(false);
-        }),
-        map((value) => {
-          if (typeof value === "object") {
-            this._pensioner = value;
-            return true;
-          }
-
-          return false;
-        })
-      );
-    } catch (e) {
-      Logger.error('AuthenticationService.authenticate(): ', e);
-      return of(false);
-    }
+    return of(false);
   }
 
   logout() {
     this._pensioner = undefined;
-    this.jwtService.clearToken();
-    this.router.navigate(['login']);
+    this._router.navigate(['login']);
     this._snackBarService.showSnackbar("You're logged out");
   }
 }
