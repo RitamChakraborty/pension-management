@@ -1,16 +1,14 @@
 import {Injectable} from '@angular/core';
-import {BehaviorSubject} from "rxjs";
+import {BehaviorSubject, delay, Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoadingService {
-  constructor() {
-  }
-
   private _isLoading: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
-  get isLoading(): BehaviorSubject<boolean> {
-    return this._isLoading;
+  get isLoading(): Observable<boolean> {
+    return this._isLoading
+      .pipe(delay(1000));
   }
 }
