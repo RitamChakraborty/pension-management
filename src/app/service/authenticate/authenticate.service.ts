@@ -12,7 +12,7 @@ export class AuthenticateService {
   private _pensioner?: Pensioner;
 
   constructor(
-    _localStorageService: LocalStorageService,
+    private _localStorageService: LocalStorageService,
     private _router: Router,
     private _snackBarService: SnackbarService
   ) {
@@ -37,7 +37,7 @@ export class AuthenticateService {
   }
 
   authenticate(): Observable<boolean> {
-    return of(false);
+    return of(this._localStorageService.isAuthenticated);
   }
 
   logout() {

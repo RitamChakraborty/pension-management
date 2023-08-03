@@ -8,7 +8,6 @@ import {MaterialModule} from "./module/material/material.module";
 import {LoginComponent} from './pages/login/login.component';
 import {HomeComponent} from './pages/home/home.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {HttpClientModule} from "@angular/common/http";
 import {NgxMaskModule} from "ngx-mask";
 
 @NgModule({
@@ -21,7 +20,6 @@ import {NgxMaskModule} from "ngx-mask";
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
