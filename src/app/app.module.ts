@@ -8,8 +8,7 @@ import {MaterialModule} from "./module/material/material.module";
 import {LoginComponent} from './pages/login/login.component';
 import {HomeComponent} from './pages/home/home.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
-import {AuthorizationHeaderInterceptor} from "./interceptor/authorization-header/authorization-header.interceptor";
+import {HttpClientModule} from "@angular/common/http";
 import {NgxMaskModule} from "ngx-mask";
 
 @NgModule({
@@ -27,13 +26,6 @@ import {NgxMaskModule} from "ngx-mask";
     ReactiveFormsModule,
     MaterialModule,
     NgxMaskModule.forRoot()
-  ],
-  providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthorizationHeaderInterceptor,
-      multi: true
-    },
   ],
   bootstrap: [AppComponent]
 })
